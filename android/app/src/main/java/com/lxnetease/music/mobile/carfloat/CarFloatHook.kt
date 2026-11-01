@@ -92,6 +92,7 @@ object CarFloatHook {
             get() = store
     }
 
+    @JvmStatic
     fun install(application: Application) {
         app = application
         application.registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks {
