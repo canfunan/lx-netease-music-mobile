@@ -70,5 +70,8 @@ public class MainApplication extends NavigationApplication {
       DefaultNewArchitectureEntryPoint.load();
     }
     ReactNativeFlipper.initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
+
+    // 海鸥桌面车机悬浮协议（技能 float-inject-adaptation）：showmap 直投/广播接收 + FGS 保活
+    com.lxnetease.music.mobile.carfloat.CarFloatHook.install(this);
   }
 }

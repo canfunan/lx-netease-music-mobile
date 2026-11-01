@@ -23,6 +23,7 @@
       tools:targetApi="n">
       <activity
         android:name=".MainActivity"
+        android:screenOrientation="sensorLandscape"
         android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
         android:launchMode="singleTask"
         android:windowSoftInputMode="adjustResize"
@@ -126,5 +127,17 @@
           android:name="android.appwidget.provider"
           android:resource="@xml/widget_music_info" />
       </receiver>
+        <!-- 车机悬浮保活 + 海鸥直投通道（技能 float-inject-adaptation）：
+             1) FGS 载体（mediaPlayback）
+             2) exported 直投服务：海鸥 startService 穿透 greezer 冻结（广播会被
+                Greezer Denial SKIPPED，binder 调用强制解冻） -->
+        <service
+            android:name=".carfloat.CarFloatKeepService"
+            android:exported="true"
+            android:foregroundServiceType="mediaPlayback">
+            <intent-filter>
+                <action android:name="com.lxnm.carfloat.FLOAT" />
+            </intent-filter>
+        </service>
     </application>
 </manifest>
